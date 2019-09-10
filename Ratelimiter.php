@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Helpers;
-
 class Ratelimiter
 {
     protected static $allow;
