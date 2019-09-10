@@ -1,10 +1,18 @@
 <?php
 
+namespace App\Helpers;
+
 class Ratelimiter
 {
     protected static $allow;
     protected static $lastCheck;
 
+    /**
+     * @param int $rate
+     * @param int $per
+     *
+     * @return void
+     */
     public static function check($rate = 5, $per = 1)
     {
         self::$lastCheck = self::$lastCheck ?? microtime(true);
@@ -24,7 +32,6 @@ class Ratelimiter
         if (self::$allow < $consumed) {
             $duration = ($consumed - self::$allow) * ($per / $rate - 1);
             self::$lastCheck += $duration;
-            // echo 'SLEEP ' . round($duration) * 1000000 . PHP_EOL;
             usleep($per * 1000000);
             self::$allow = $rate;
         } else {
