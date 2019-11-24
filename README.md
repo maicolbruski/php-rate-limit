@@ -9,7 +9,7 @@ Ex: 5 request in 2 seconds
 $i = 1;
 while ($i <= 7) {
     Ratelimiter::check(5, 2);
-    echo "foo {$i} - ".date('m:s').PHP_EOL;
+    echo "foo {$i} - ".date('i:s').PHP_EOL;
     $i++;
 }
 echo 'FINISH';
